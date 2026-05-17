@@ -60,6 +60,10 @@ El proyecto se divide en dos paneles:
 - Trazado de llamadas
 - Resultado final del cálculo
 
+<p align="center">
+  <img alt="image" src="https://github.com/user-attachments/assets/c675c5d2-1b27-4bb2-8840-937a2da42f87" width="600"/>
+</p>
+
 ---
 
 ## 🧩 Tecnologías usadas
