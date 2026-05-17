@@ -1,0 +1,598 @@
+<style>
+:root{
+  --bg1:#0f172a;
+  --bg2:#111827;
+  --card: rgba(255,255,255,0.06);
+  --card2: rgba(255,255,255,0.09);
+  --border: rgba(255,255,255,0.12);
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --accent:#22c55e;
+  --accent2:#38bdf8;
+  --warn:#f59e0b;
+  --radius:16px;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background: radial-gradient(circle at top, #1f2937, var(--bg1));
+  color:var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+}
+
+.app{
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:1rem;
+  margin-bottom:1.5rem;
+  border:1px solid var(--border);
+  background: var(--card);
+  backdrop-filter: blur(14px);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  background: linear-gradient(135deg,var(--accent),var(--accent2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+.header-text h1{
+  font-size:16px;
+  font-weight:600;
+}
+
+.header-text p{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* LAYOUT */
+.cols{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+
+/* PANELS */
+.panel{
+  background: var(--card);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding:1rem;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 35px rgba(0,0,0,.25);
+  transition:.3s;
+}
+
+.panel:hover{
+  transform: translateY(-2px);
+}
+
+/* TITLES */
+.panel-title{
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:.75rem;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* FORM */
+.add-form{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+/* INPUTS */
+.add-form input,
+.add-form select{
+  padding:10px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.35);
+  color:var(--text);
+  outline:none;
+}
+
+/* SELECT FIX (IMPORTANTE) */
+.add-form select{
+  cursor:pointer;
+  appearance:none;
+}
+
+.add-form select option{
+  background:#111827;
+  color:#e5e7eb;
+}
+
+/* FOCUS */
+.add-form input:focus,
+.add-form select:focus{
+  border-color: var(--accent2);
+  box-shadow: 0 0 0 2px rgba(56,189,248,.25);
+}
+
+/* BUTTONS */
+button{
+  border:none;
+  padding:10px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:500;
+  color:white;
+  background: linear-gradient(135deg,var(--accent),#16a34a);
+  transition:.2s;
+}
+
+button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(34,197,94,.25);
+}
+
+button:active{
+  transform: scale(.98);
+}
+
+/* PRESETS */
+.presets{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top:6px;
+}
+
+.presets button{
+  width:100%;
+  background: var(--card2);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+
+/* QUEUE */
+.queue-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:.5rem;
+  min-height:70px;
+}
+
+.q-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background: var(--card2);
+  transition:.25s;
+}
+
+.q-item:hover{
+  transform: scale(1.01);
+}
+
+.q-item.frente{
+  border-color: var(--accent);
+}
+
+.q-item.procesando{
+  border-color: var(--warn);
+}
+
+.q-item.done{
+  opacity:.35;
+}
+
+.nombre{
+  font-weight:500;
+}
+
+.monto{
+  color: var(--accent);
+  font-weight:600;
+}
+
+/* METRICS */
+.metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:1rem;
+}
+
+.metric{
+  background: var(--card2);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:.8rem;
+  text-align:center;
+}
+
+.metric .val{
+  font-size:20px;
+  font-weight:700;
+}
+
+.metric .lbl{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.metric.highlight .val{
+  color:var(--accent);
+}
+
+/* CODE BOX (MEJOR ESPACIADO) */
+.code-box{
+  background: rgba(0,0,0,.25);
+  border:1px solid var(--border);
+  padding:12px;
+  border-radius:14px;
+  font-family: monospace;
+  font-size:12px;
+  line-height:1.6;
+  margin-bottom:1rem; /* 🔥 separación clave */
+}
+
+#cl1, #cl5, #cl7{
+  padding-left: 0px;
+}
+
+#cl2, #cl3, #cl4{
+  padding-left: 18px;
+}
+
+#cl6{
+  padding-left: 18px;
+}
+
+/* BOTONES (MEJOR SEPARACIÓN) */
+.btn-row{
+  display:flex;
+  gap:10px;
+  margin-top:1rem;     /* 🔥 separación del código */
+  margin-bottom:1rem;  /* 🔥 separación del trace */
+  flex-wrap:wrap;
+}
+
+.btn-row button{
+  flex:1;
+  min-width:140px;
+}
+
+/* TRACE */
+.trace-item{
+  padding:6px 8px;
+  border-radius:10px;
+  font-size:12px;
+  border-left:3px solid transparent;
+  background: rgba(255,255,255,0.04);
+}
+
+.trace-item.call{border-color:var(--accent)}
+.trace-item.base{border-color:var(--warn)}
+.trace-item.ret{border-color:var(--accent2)}
+
+.trace-list{
+  max-height:200px;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+/* RESULT */
+.result-banner{
+  margin-top:.75rem;
+  padding:12px;
+  border-radius:14px;
+  text-align:center;
+  border:1px solid var(--border);
+  background: var(--card2);
+  color:var(--muted);
+}
+
+.result-banner.final{
+  background: linear-gradient(135deg, rgba(34,197,94,.2), rgba(56,189,248,.2));
+  border-color: var(--accent);
+  color: var(--text);
+  font-weight:600;
+}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .cols{
+    grid-template-columns:1fr;
+  }
+
+  .btn-row button{
+    flex:100%;
+  }
+}
+</style>
+
+<div class="app">
+  <div class="header">
+    <div class="logo">🍕</div>
+    <div class="header-text">
+      <h1>Sistema de pedidos</h1>
+      <p>Simulación de montoTotalPedidos con TDA Cola recursiva</p>
+    </div>
+  </div>
+
+  <div class="cols">
+    <!-- PANEL IZQUIERDO: Cola de pedidos -->
+    <div class="panel">
+      <div class="panel-title"><i class="ti ti-list" aria-hidden="true"></i> Cola de pedidos (FIFO)</div>
+
+     <div class="add-form">
+        <select id="selCliente">
+          <option value="Lucía">Lucía</option>
+          <option value="Mateo">Mateo</option>
+          <option value="Valentina">Valentina</option>
+          <option value="Santiago">Santiago</option>
+          <option value="Camila">Camila</option>
+          <option value="Tomás">Tomás</option>
+          <option value="otro">Otro...</option>
+        </select>
+
+        <!-- INPUT MANUAL -->
+        <input type="text" id="inpNombreManual" placeholder="Escribí el nombre" style="display:none;" />
+
+        <input type="number" id="inpMonto" placeholder="Monto del pedido $" min="1" step="0.01"/>
+
+        <button onclick="agregarPedido()">Encolar pedido</button>
+      </div>
+
+      <div class="presets">
+        <button onclick="cargarEjemplo()"><i class="ti ti-bolt" aria-hidden="true"></i> Cargar ejemplo</button>
+        <button onclick="limpiarTodo()"><i class="ti ti-trash" aria-hidden="true"></i> Limpiar</button>
+      </div>
+
+      <div class="queue-list" id="queueList">
+        <div class="empty-q">Sin pedidos aún</div>
+      </div>
+
+      <div class="metrics" style="margin-top:.75rem">
+        <div class="metric">
+          <div class="val" id="mCant">0</div>
+          <div class="lbl">pedidos en cola</div>
+        </div>
+        <div class="metric highlight">
+          <div class="val" id="mTotal">$0</div>
+          <div class="lbl">monto acumulado</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL DERECHO: Recursión -->
+    <div class="panel">
+      <div class="panel-title"><i class="ti ti-code" aria-hidden="true"></i> Ejecución recursiva</div>
+
+    <div class="code-box">
+      <div>Funcion montoTotalPedidos (val C: TCOLA) : REAL</div>
+      <div id="cl1">INICIO</div>
+
+      <div id="cl2">Si (NO Cvacia(C)) entonces</div>
+      <div id="cl3">Csacar(C, DATO)</div>
+      <div id="cl4">MONTO &lt;- DATO + montoTotalPedidos(C)</div>
+      <div id="cl4">Devolver MONTO</div>
+
+      <div id="cl5">Sino</div>
+      <div id="cl6">Devolver 0</div>
+
+      <div id="cl7">FinSi</div>
+      <div id="cl7">FIN FUNCION</div>
+    </div>
+
+      <div class="btn-row">
+        <button id="btnPaso" onclick="siguientePaso()" disabled><i class="ti ti-player-play" aria-hidden="true"></i> Siguiente paso</button>
+        <button id="btnAuto" onclick="ejecutarTodo()" disabled><i class="ti ti-player-fast-forward" aria-hidden="true"></i> Ejecutar todo</button>
+        <button onclick="reiniciarEjecucion()"><i class="ti ti-refresh" aria-hidden="true"></i> Reiniciar</button>
+      </div>
+
+      <div class="trace-list" id="traceList"></div>
+      <div class="result-banner" id="resultBanner">Agregá pedidos y presioná "Siguiente paso"</div>
+    </div>
+  </div>
+</div>
+
+<script>
+let cola = [];
+let pasos = [];
+let pasoIdx = 0;
+let autoTimer = null;
+
+document.getElementById("selCliente").addEventListener("change", function () {
+  const manual = document.getElementById("inpNombreManual");
+
+  if (this.value === "otro") {
+    manual.style.display = "block";
+  } else {
+    manual.style.display = "none";
+    manual.value = "";
+  }
+});
+
+function agregarPedido(){
+
+  let nombre;
+  const sel = document.getElementById('selCliente').value;
+
+  if (sel === "otro") {
+    nombre = document.getElementById('inpNombreManual').value.trim();
+    if (!nombre) {
+      document.getElementById('inpNombreManual').focus();
+      return;
+    }
+  } else {
+    nombre = sel;
+  }
+
+  const monto = parseFloat(document.getElementById('inpMonto').value);
+
+  if(isNaN(monto) || monto <= 0){
+    document.getElementById('inpMonto').focus();
+    return;
+  }
+
+  cola.push({nombre, monto:Math.round(monto*100)/100});
+
+  document.getElementById('inpMonto').value='';
+  document.getElementById('inpNombreManual').value='';
+
+  reiniciarEjecucion();
+  renderCola(-1,[]);
+}
+
+function cargarEjemplo(){
+  cola=[
+    {nombre:'Lucía', monto:850},
+    {nombre:'Mateo', monto:1200},
+    {nombre:'Valentina', monto:650},
+    {nombre:'Santiago', monto:990},
+  ];
+  reiniciarEjecucion();
+  renderCola(-1,[]);
+}
+
+function limpiarTodo(){
+  cola=[];
+  reiniciarEjecucion();
+  renderCola(-1,[]);
+}
+
+function renderCola(activo, procesados){
+  const el = document.getElementById('queueList');
+  if(cola.length===0){el.innerHTML='<div class="empty-q">Sin pedidos aún</div>';
+    document.getElementById('mCant').textContent='0';
+    document.getElementById('mTotal').textContent='$0';
+    return;
+  }
+  el.innerHTML = cola.map((p,i)=>{
+    let cls='q-item';
+    if(procesados.includes(i)) cls+=' done';
+    else if(i===activo) cls+=' procesando';
+    else if(i===procesados.length) cls+=' frente';
+    const badge = (i===procesados.length&&!procesados.includes(i)) ? '<span class="badge">frente</span>' : '';
+    return `<div class="${cls}">
+      <span class="nombre"><i class="ti ti-user" aria-hidden="true" style="font-size:13px;margin-right:4px"></i>${p.nombre}</span>
+      <span style="display:flex;align-items:center;gap:6px">${badge}<span class="monto">$${p.monto.toFixed(2)}</span></span>
+    </div>`;
+  }).join('');
+  document.getElementById('mCant').textContent=cola.length;
+  const tot = cola.reduce((a,b)=>a+b.monto,0);
+  document.getElementById('mTotal').textContent='$'+tot.toFixed(2);
+}
+
+function construirPasos(){
+  pasos=[];
+  function gen(arr, prof){
+    if(arr.length===0){
+      pasos.push({tipo:'base',prof,arr:[...arr],desc:'Cvacia(C) = VERDADERO → Devolver 0'});
+      return 0;
+    }
+    const dato = arr[0];
+    pasos.push({tipo:'call',prof,arr:[...arr],dato,
+      desc:`Csacar → DATO = $${dato.monto.toFixed(2)} (${dato.nombre}) → llamada recursiva con ${arr.length-1} pedido${arr.length-1!==1?'s':''}`});
+    const sub = gen(arr.slice(1), prof+1);
+    const total = dato.monto + sub;
+    pasos.push({tipo:'ret',prof,arr:[...arr],dato,sub,total,
+      desc:`$${dato.monto.toFixed(2)} + $${sub.toFixed(2)} = $${total.toFixed(2)}`});
+    return total;
+  }
+  gen([...cola],0);
+}
+
+function siguientePaso(){
+  if(pasoIdx>=pasos.length) return;
+  const p = pasos[pasoIdx];
+  pasoIdx++;
+
+  // trace
+  const trace = document.getElementById('traceList');
+  const indent = '&nbsp;'.repeat(p.prof*3);
+  let tag='';
+  if(p.tipo==='call') tag='call';
+  else if(p.tipo==='base') tag='base';
+  else tag='ret';
+  const labels={call:'llamada',base:'caso base',ret:'retorno'};
+  const item = document.createElement('div');
+  item.className=`trace-item ${tag}`;
+  item.innerHTML=`${indent}[prof.${p.prof}] ${labels[tag]}: ${p.desc}`;
+  trace.appendChild(item);
+  trace.scrollTop=trace.scrollHeight;
+
+  // highlight cola
+  const procesados = pasos.slice(0,pasoIdx).filter(x=>x.tipo==='call').map((_,i)=>i);
+  const activo = p.tipo==='call' ? p.prof : -1;
+  renderCola(activo, procesados);
+
+  // result banner
+  const banner = document.getElementById('resultBanner');
+  const isLast = pasoIdx===pasos.length;
+  if(isLast && p.tipo==='ret' && p.prof===0){
+    banner.textContent=`✓ Monto total cobrado: $${p.total.toFixed(2)}`;
+    banner.className='result-banner final';
+  } else {
+    banner.innerHTML = p.desc;
+    banner.className='result-banner';
+  }
+
+  const done = pasoIdx>=pasos.length;
+  document.getElementById('btnPaso').disabled=done;
+  document.getElementById('btnAuto').disabled=done;
+}
+
+function ejecutarTodo(){
+  if(autoTimer) return;
+  autoTimer=setInterval(()=>{
+    if(pasoIdx>=pasos.length){clearInterval(autoTimer);autoTimer=null;return;}
+    siguientePaso();
+  },800);
+}
+
+function reiniciarEjecucion(){
+  if(autoTimer){clearInterval(autoTimer);autoTimer=null;}
+  pasoIdx=0;pasos=[];
+  document.getElementById('traceList').innerHTML='';
+  document.getElementById('resultBanner').textContent='Agregá pedidos y presioná "Siguiente paso"';
+  document.getElementById('resultBanner').className='result-banner';
+  if(cola.length>0){
+    construirPasos();
+    document.getElementById('btnPaso').disabled=false;
+    document.getElementById('btnAuto').disabled=false;
+  } else {
+    document.getElementById('btnPaso').disabled=true;
+    document.getElementById('btnAuto').disabled=true;
+  }
+  renderCola(-1,[]);
+}
+
+cargarEjemplo();
+</script>
